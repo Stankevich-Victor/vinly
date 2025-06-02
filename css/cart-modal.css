@@ -1,0 +1,598 @@
+/* css/cart-modal.css */
+
+/* Стилі для фону модального вікна */
+.cart-overlay {
+    position: fixed; /* Залишається на місці при прокрутці */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Напівпрозорий чорний фон */
+    display: flex;
+    justify-content: center; /* Центруємо по горизонталі */
+    align-items: center; /* Центруємо по вертикалі */
+    z-index: 1000; /* Перекриває весь інший вміст */
+    opacity: 0; /* Початкова прозорість (прихований) */
+    visibility: hidden; /* Початкова видимість (прихований) */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Плавний перехід */
+}
+
+/* Коли оверлей активний */
+.cart-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Стилі для самого модального вікна (контейнера кошика) */
+.cart-modal {
+    background-color: #333; /* Темний фон кошика */
+    color: #eee;
+    width: 90%;
+    max-width: 900px; /* Максимальна ширина кошика */
+    max-height: 90vh; /* Максимальна висота, щоб був прокрутка, якщо вмісту багато */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    position: relative;
+    overflow-y: auto; /* Дозволяє прокрутку всередині модального вікна */
+    transform: translateY(-20px); /* Початкове положення для анімації */
+    opacity: 0; /* Початкова прозорість для анімації */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Плавний перехід */
+}
+
+.cart-items-container {
+    flex-grow: 1; /* Дозволяє займати доступний простір */
+    overflow-y: auto; /* Дозволяє вертикальну прокрутку */
+    padding-right: 10px; /* Додаємо невеликий відступ, щоб скролбар не "наїжджав" на вміст */
+    margin-bottom: 20px; /* Відступ від підсумку */
+    max-height: 400px; /* Обмежте висоту, наприклад, 400px, щоб кошик не займав весь екран */
+}
+
+/* Анімація появи модального вікна */
+.cart-overlay.active .cart-modal {
+    transform: translateY(0); /* Кінцеве положення */
+    opacity: 1;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #555;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.cart-header h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #eee;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 10px;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover {
+    color: #fff;
+}
+
+/* Стилі для окремого товару в кошику */
+.cart-items-container {
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #444;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.item-img-wrapper {
+    position: relative;
+    flex-shrink: 0; /* Не дозволяє зображенню стискатися */
+}
+
+.item-image {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #555;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #dc3545; /* Червоний для знижки */
+    color: white;
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    transform: translate(-10%, -10%);
+    z-index: 10;
+}
+
+.item-details {
+    flex-grow: 1; /* Дозволяє назві та продавцю займати доступний простір */
+}
+
+.item-name {
+    font-size: 1rem;
+    color: #eee;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.item-vendor {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.item-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-btn {
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantity-btn:hover {
+    background-color: #666;
+}
+
+.quantity-input {
+    width: 40px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #222;
+    color: #eee;
+    font-size: 1rem;
+    -moz-appearance: textfield; /* Прибирає стрілки в Firefox */
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Прибирає стрілки в Chrome, Safari */
+    margin: 0;
+}
+
+
+.item-price-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.current-price {
+    font-size: 1.2rem;
+    color: #aaffaa; /* Яскраво-зелений для нової ціни */
+    font-weight: bold;
+}
+
+.more-options {
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+}
+
+.more-options:hover {
+    color: #fff;
+}
+
+
+/* Підсумок кошика */
+.cart-summary {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid #555;
+    margin-top: 20px;
+}
+
+.total-price-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #aaffaa;
+    margin: 0;
+}
+
+.checkout-button {
+    background-color: #28a745; /* Зелена кнопка "Оформити замовлення" */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.checkout-button:hover {
+    background-color: #218838;
+}
+
+/* Секція "Ще беруть до товару" */
+.also-buy-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #3a3a3a; /* Трохи світліший фон для секції */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.also-buy-section h2 {
+    font-size: 1.5rem;
+    color: #eee;
+    margin-bottom: 25px;
+}
+
+.also-buy-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Відстань між стрілками та контентом */
+    position: relative; /* Для позиціонування стрілок */
+    margin-bottom: 20px;
+}
+
+.carousel-arrow {
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+}
+
+.carousel-arrow:hover {
+    background-color: #666;
+}
+
+.also-buy-items {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden; /* Приховуємо прокрутку, щоб стрілки працювали */
+    scroll-behavior: smooth; /* Плавна прокрутка */
+    flex-grow: 1; /* Займе доступний простір */
+    justify-content: center; /* Центруємо елементи, якщо їх менше, ніж місце */
+}
+
+.also-buy-item {
+    flex-shrink: 0; /* Запобігаємо стисканню елементів */
+    width: 180px; /* Фіксована ширина елемента */
+    background-color: #444;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Розтягує елементи на всю висоту */
+}
+
+.also-buy-img-wrapper {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.also-buy-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain; /* Зображення вписується, не обрізається */
+    border: 1px solid #555;
+    border-radius: 4px;
+}
+
+.also-buy-name {
+    font-size: 0.9rem;
+    color: #eee;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    min-height: 3em; /* Щоб назви однакової висоти були */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Обрізає назву після 2 рядків */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.also-buy-price {
+    font-size: 1.1rem;
+    color: #aaffaa;
+    font-weight: bold;
+}
+
+.plus-sign {
+    font-size: 2rem;
+    color: #aaffaa;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.discount-badge-small {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #dc3545;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    transform: translate(-10%, -10%);
+    z-index: 10;
+}
+
+.old-price-small {
+    text-decoration: line-through;
+    color: #aaa;
+    font-size: 0.8rem;
+    display: block; /* Забезпечує, що ціна на новому рядку */
+}
+
+.current-price-small {
+    font-size: 1rem;
+    color: #aaffaa;
+    font-weight: bold;
+    display: block;
+}
+
+.also-buy-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #555;
+    padding-top: 15px;
+    margin-top: 25px;
+}
+
+.total-bundle-price {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin: 0;
+}
+
+.bundle-action {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.bundle-price-value {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #aaffaa;
+}
+
+.buy-bundle-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.buy-bundle-button:hover {
+    background-color: #218838;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #666;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dot.active {
+    background-color: #aaffaa;
+}
+
+.continue-shopping {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: block; /* Кнопка займає всю ширину */
+    width: fit-content; /* Ширина по контенту */
+    margin: 30px auto 0 auto; /* Центруємо її */
+}
+
+.continue-shopping:hover {
+    background-color: #666;
+}
+
+/* СТИЛІ ДЛЯ ПУСТОГО КОШИКА */
+.empty-cart-message {
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.empty-cart-message p {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #aaffaa;
+}
+
+.empty-cart-message .continue-shopping {
+    margin-top: 30px;
+}
+
+
+/* Адаптивність для кошика */
+@media (max-width: 768px) {
+    .cart-modal {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .cart-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .close-button {
+        font-size: 1.8rem;
+    }
+
+    .cart-item {
+        flex-wrap: wrap; /* Дозволяє елементам переноситися на новий рядок */
+        justify-content: center;
+        text-align: center;
+    }
+
+    .item-details {
+        text-align: center;
+        flex: 1 1 100%; /* Займає всю ширину */
+        margin-top: 10px;
+    }
+
+    .item-quantity-controls {
+        order: 3; /* Змінюємо порядок, щоб бути знизу */
+        flex: 1 1 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .item-price-info {
+        order: 2; /* Змінюємо порядок */
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .item-price-info .more-options {
+        display: none; /* Приховуємо на мобільних, щоб не заважало */
+    }
+
+    .total-price-text {
+        font-size: 1.5rem;
+    }
+
+    .checkout-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .also-buy-section h2 {
+        font-size: 1.3rem;
+    }
+
+    .also-buy-carousel {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .carousel-arrow {
+        display: none; /* Приховуємо стрілки на мобільних, якщо carousel-dots достатньо */
+    }
+
+    .also-buy-items {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .also-buy-item {
+        width: 150px; /* Зменшимо ширину елементів */
+        padding: 10px;
+    }
+
+    .also-buy-item img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .plus-sign {
+        font-size: 1.5rem;
+        margin: 0 10px;
+    }
+
+    .also-buy-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .bundle-action {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .bundle-price-value {
+        font-size: 1.2rem;
+    }
+    .buy-bundle-button {
+        width: 100%;
+    }
+}
