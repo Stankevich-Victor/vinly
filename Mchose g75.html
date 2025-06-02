@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВІНЛІ - Mchose g75</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-links">
+            <a href="index.html">Каталог</a>
+            <a href="#">Оплата і доставка</a>
+            <a href="#">Контакти</a>
+            <a href="#">Про нас</a>
+        </div>
+        <div class="logo-bar">
+            <div class="logo">ВІНЛІ</div>
+            <input type="text" placeholder="пошук товарів..." class="search">
+            <div class="cart">🛒</div>
+        </div>
+        <nav class="categories">
+            <button>Клавіатури</button>
+            <button>Миші</button>
+            <button>Навушники</button>
+            <button>Мікрофони</button>
+            <button class="red">Акції</button>
+        </nav>
+    </header>
+
+    <main class="product-page">
+        <section class="product-details">
+            <div class="product-name-mobile">
+                <h1>Mchose g75</h1>
+                <p class="price">Ціна: <span>2799 грн</span></p>
+            </div>
+
+            <div class="image-gallery">
+                <div class="main-image">
+                    <img src="image/photo2.jpg" alt="Mchose g75 - Основне зображення">
+                </div>
+                <div class="secondary-images">
+                    <img src="image/photo2.jpg" alt="Mchose g75 - мініатюра 0" onclick="changeMainImage('image/photo2.jpg')">
+                    <img src="image/mschose1jpg.jpg" alt="Mchose g75 - мініатюра 1" onclick="changeMainImage('image/mschose1jpg.jpg')">
+                    <img src="image/mschose2.jpg" alt="Mchose g75 - мініатюра 2" onclick="changeMainImage('image/mschose2.jpg')">
+                    <img src="image/mschose3.jpg" alt="Mchose g75 - мініатюра 3" onclick="changeMainImage('image/mschose3.jpg')">
+                    <img src="image/mschose4.jpg" alt="Mchose g75 - мініатюра 4" onclick="changeMainImage('image/mschose4.jpg')">
+                </div>
+            </div>
+
+            <div class="product-buy-info">
+                <h1 class="desktop-title">Mchose g75</h1>
+                <p class="price desktop-price">Ціна: <span>2799 грн</span></p>
+
+                <div class="quantity-selector">
+                    <label for="quantity">Кількість:</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                </div>
+
+                <button class="buy-now-button">Купити зараз</button>
+                <button class="add-to-cart">Додати до кошика</button>
+            </div>
+
+            <div class="product-additional-info">
+                <div class="specifications">
+                    <h2>Характеристики</h2>
+                    <ul>
+                        <li>Форм-фактор: 75% (81 клавіша)</li>
+                        <li>Тип підключення: Трирежимний (USB-C, Bluetooth 5.0, 2.4 GHz)</li>
+                        <li>Матеріал корпусу: Алюміній</li>
+                        <li>Підсвітка: RGB, настроювана</li>
+                        <li>Тип свічів: Механічні (гаряча заміна)</li>
+                        <li>Акумулятор: 3000 мАг</li>
+                        <li>Сумісність: Windows, macOS, Android, iOS</li>
+                    </ul>
+                </div>
+
+                <div class="description">
+                    <h2>Опис</h2>
+                    <p>
+                        Mchose G75 - це високоякісна механічна клавіатура, розроблена для геймерів та ентузіастів, які цінують якість та функціональність. Її компактний 75%-вий форм-фактор робить її зручною для будь-якого робочого простору, зберігаючи при цьому всі необхідні функціональні клавіші.
+                    </p>
+                    <p>
+                        Клавіатура оснащена інноваційними механічними свічами, що забезпечують чіткий тактильний відгук та швидке спрацьовування. RGB-підсвітка з різноманітними режимами дозволяє налаштувати естетику під ваш настрій або ігрове середовище. Міцна алюмінієва рама гарантує довговічність та стабільність під час інтенсивного використання.
+                    </p>
+                    <p>
+                        Mchose G75 підтримує кілька типів підключення: дротове (USB-C), Bluetooth 5.0 та 2.4 GHz бездротове з низькою затримкою. Це забезпечує максимальну гнучкість у використанні, будь то гра на ПК, робота з планшетом або підключення до інших пристроїв. В комплекті йде все необхідне для комфортного використання, включаючи інструменти для заміни свічів та кабелі.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Про ВІНЛІ</h3>
+                <p>Ваш надійний партнер у світі комп'ютерної периферії. Ми пропонуємо широкий асортимент клавіатур, мишей, навушників та мікрофонів від провідних виробників.</p>
+                <p>Якість та швидка доставка - наш пріоритет.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Контакти</h3>
+                <ul>
+                    <li>Email: <a href="mailto:info@vinli.com.ua">info@vinli.com.ua</a></li>
+                    <li>Телефон: <a href="tel:+380991234567">+38 (099) 123-45-67</a></li>
+                    <li>Адреса: м. Житомир, вул. Київська, 1</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Соціальні мережі</h3>
+                <div class="social-links">
+                    <a href="https://t.me/your_telegram_shop" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="social-icon">
+                        Telegram
+                    </a>
+                    <a href="https://www.tiktok.com/@your_tiktok_shop" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/TikTok_logo.svg" alt="TikTok" class="social-icon">
+                        TikTok
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Інформація</h3>
+                <ul>
+                    <li><a href="#">Політика конфіденційності</a></li>
+                    <li><a href="#">Умови використання</a></li>
+                    <li><a href="#">Повернення товару</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ВІНЛІ. Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <script>
+        function changeMainImage(newImage) {
+            document.querySelector('.main-image img').src = newImage;
+        }
+    </script>
+</body>
+</html>
