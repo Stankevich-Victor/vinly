@@ -167,12 +167,12 @@
 }
 
 .buy-now-button {
-    background-color: #dc3545;
+    background-color:  #c43434;
     color: white;
 }
 
 .buy-now-button:hover {
-    background-color: #c82333;
+    background-color:#a4dd4a;
     transform: translateY(-2px);
 }
 

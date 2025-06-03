@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #696666;
+    background: #353535;
     color: #c5c5c5;
     /* УВАГА: padding-top для body тепер не потрібен, тому що хедер не фіксований за замовчуванням */
     padding-top: 0; /* або залиште 0, якщо не потрібен */
@@ -11,8 +11,8 @@ body {
 
 /* ОСНОВНИЙ ХЕДЕР (ПРОКРУЧУЄТЬСЯ ЗІ СТОРІНКОЮ) */
 .main-header {
-    background: rgba(80, 80, 80, 0.8);
-    color: white;
+    background: rgba(20, 20, 20, 0.8);
+    color: rgb(43, 43, 43);
     width: 100%;
     z-index: 1000;
     backdrop-filter: blur(5px);
