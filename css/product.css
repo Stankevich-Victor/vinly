@@ -1,12 +1,11 @@
 /* css/product.css */
 
 /* Стилі для сторінки окремого товару */
-
 .product-page {
     padding: 20px;
     max-width: 1200px;
     margin: 20px auto;
-    background-color: #333; /* Трохи світліший фон для основної секції товару */
+    background-color: #333;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
     color: #eee;
@@ -14,13 +13,12 @@
 
 .product-details {
     display: flex;
-    flex-wrap: wrap; /* Дозволяє блокам переноситись на новий рядок на малих екранах */
-    gap: 30px; /* Відстань між зображенням та інформацією про товар */
+    flex-wrap: wrap;
+    gap: 30px;
     margin-bottom: 40px;
-    align-items: flex-start; /* Вирівнювання елементів по верхньому краю */
+    align-items: flex-start;
 }
 
-/* Заголовок та ціна для мобільних пристроїв (за замовчуванням приховані) */
 .product-name-mobile {
     display: none;
     width: 100%;
@@ -40,10 +38,9 @@
     font-weight: bold;
 }
 
-/* Галерея зображень */
 .image-gallery {
-    flex: 1; /* Займе доступний простір */
-    min-width: 300px; /* Мінімальна ширина для галереї */
+    flex: 1;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,22 +48,21 @@
 
 .main-image {
     width: 100%;
-    max-width: 500px; /* Максимальна ширина основного зображення */
+    max-width: 500px;
     border: 1px solid #555;
     border-radius: 8px;
-    overflow: hidden; /* Запобігає виходу зображення за межі */
+    overflow: hidden;
     margin-bottom: 15px;
-    background-color: #444; /* Для випадків, коли зображення може бути меншим */
+    background-color: #444;
 }
 
 .main-image img {
     width: 100%;
     height: auto;
-    display: block; /* Прибирає зайві пробіли під зображенням */
-    transition: transform 0.3s ease; /* Для ефекту при наведенні, якщо ви захочете */
+    display: block;
+    transition: transform 0.3s ease;
 }
 
-/* Приклад ефекту наведення на головне зображення */
 .main-image img:hover {
     transform: scale(1.02);
 }
@@ -81,9 +77,9 @@
 }
 
 .secondary-images img {
-    width: 80px; /* Розмір мініатюр */
+    width: 80px;
     height: 80px;
-    object-fit: cover; /* Обрізає зображення, щоб воно заповнило контейнер */
+    object-fit: cover;
     border: 2px solid transparent;
     border-radius: 4px;
     cursor: pointer;
@@ -91,26 +87,24 @@
 }
 
 .secondary-images img:hover {
-    border-color: #007bff; /* Колір рамки при наведенні */
+    border-color: #007bff;
     transform: translateY(-2px);
 }
 
 .secondary-images img.active {
-    border-color: #007bff; /* Колір рамки для активної мініатюри */
+    border-color: #007bff;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
 }
 
-/* Інформація про покупку */
 .product-buy-info {
-    flex: 1.5; /* Займе більше простору */
-    min-width: 300px; /* Мінімальна ширина для блоку інформації */
-    background-color: #2a2a2a; /* Темніший фон для цього блоку */
+    flex: 1.5;
+    min-width: 300px;
+    background-color: #2a2a2a;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Заголовок та ціна для десктопу (за замовчуванням видимі) */
 .desktop-title {
     font-size: 2.2rem;
     color: white;
@@ -119,13 +113,13 @@
 
 .desktop-price {
     font-size: 2.2rem;
-    color: #aaffaa; /* Яскраво-зелений для ціни */
+    color: #aaffaa;
     font-weight: bold;
     margin-bottom: 25px;
 }
 
 .desktop-price span {
-    font-size: 1em; /* Забезпечуємо, що число має такий же розмір */
+    font-size: 1em;
 }
 
 .quantity-selector {
@@ -149,20 +143,18 @@
     color: #eee;
     font-size: 1rem;
     text-align: center;
-    -moz-appearance: textfield; /* Прибирає стрілки в Firefox */
+    -moz-appearance: textfield;
 }
 
-/* Прибирає стрілки в Chrome, Safari, Edge */
 .quantity-selector input[type="number"]::-webkit-outer-spin-button,
 .quantity-selector input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-
 .buy-now-button,
 .add-to-cart {
-    display: block; /* Кожна кнопка на новому рядку */
+    display: block;
     width: 100%;
     padding: 15px 20px;
     font-size: 1.2rem;
@@ -170,12 +162,12 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 15px; /* Відступ між кнопками */
+    margin-bottom: 15px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .buy-now-button {
-    background-color: #dc3545; /* Червона кнопка для покупки */
+    background-color: #dc3545;
     color: white;
 }
 
@@ -185,7 +177,7 @@
 }
 
 .add-to-cart {
-    background-color: #007bff; /* Синя кнопка для кошика */
+    background-color: #007bff;
     color: white;
 }
 
@@ -204,8 +196,6 @@
     color: white;
 }
 
-
-/* Додаткова інформація (характеристики та опис) */
 .product-additional-info {
     display: flex;
     flex-wrap: wrap;
@@ -216,7 +206,7 @@
 .specifications,
 .description {
     flex: 1;
-    min-width: 300px; /* Мінімальна ширина для цих блоків */
+    min-width: 300px;
     background-color: #2a2a2a;
     padding: 25px;
     border-radius: 8px;
@@ -257,30 +247,29 @@
     color: #ccc;
 }
 
-
 /* Адаптивність */
 @media (max-width: 992px) {
     .product-details {
-        flex-direction: column; /* Зображення та інфо один під одним */
+        flex-direction: column;
         align-items: center;
     }
 
     .image-gallery,
     .product-buy-info {
-        width: 100%; /* Повна ширина для блоків */
-        max-width: 600px; /* Обмеження ширини для вигляду */
+        width: 100%;
+        max-width: 600px;
     }
 
     .product-buy-info {
-        order: 2; /* Щоб блок покупки був після зображення */
+        order: 2;
     }
 
     .image-gallery {
-        order: 1; /* Зображення першим */
+        order: 1;
     }
 
     .product-additional-info {
-        flex-direction: column; /* Характеристики та опис один під одним */
+        flex-direction: column;
     }
 }
 
@@ -290,13 +279,11 @@
         margin: 15px auto;
     }
 
-    /* Приховуємо десктопні заголовки та ціни */
     .desktop-title,
     .desktop-price {
         display: none;
     }
 
-    /* Показуємо мобільні заголовки та ціни */
     .product-name-mobile {
         display: block;
     }
@@ -329,50 +316,84 @@
 
 @media (max-width: 480px) {
     .product-page {
-        padding: 10px;
-        margin: 10px auto;
+        padding: 8px;
+        margin: 5px auto;
     }
 
     .product-name-mobile h1 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        line-height: 1.3;
     }
 
     .product-name-mobile .price {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+    }
+
+    .product-details {
+        gap: 15px;
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .main-image {
+        max-width: 100%;
         border-radius: 4px;
+        margin-bottom: 10px;
     }
 
     .secondary-images {
-        gap: 5px;
+        gap: 4px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
     }
 
     .secondary-images img {
-        width: 60px;
-        height: 60px;
+        width: 55px;
+        height: 55px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
     }
 
     .product-buy-info,
     .specifications,
     .description {
-        padding: 15px;
+        padding: 12px;
+        border-radius: 6px;
     }
 
-    .desktop-title,
-    .desktop-price {
-        display: none; /* Переконаємось, що вони приховані */
+    .buy-now-button,
+    .add-to-cart {
+        padding: 10px;
+        font-size: 1rem;
+        margin-bottom: 10px;
     }
 
     .specifications h2,
     .description h2 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
     }
 
     .specifications ul li,
     .description p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+    }
+
+    .desktop-title,
+    .desktop-price {
+        display: none;
+    }
+
+    .quantity-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .quantity-selector input[type="number"] {
+        width: 100%;
     }
 }

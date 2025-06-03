@@ -1,0 +1,373 @@
+
+/* Загальні стилі та обнулення */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2b2b2b; /* Дуже темний фон сторінки, як на image_243805.png */
+    color: #F0F0F0; /* Світлий текст за замовчуванням */
+}
+
+.catalog-container {
+    max-width: 1280px; /* Ширина, щоб вмістити 5 колонок */
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Header Styles (залишаємо, як було, оскільки вони не показані на image_243805.png, але потрібні для повноти) */
+.header-main {
+    background-color: #4a4a4a;
+    color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 13px;
+    color: #bbb;
+}
+
+.top-bar p {
+    margin: 0;
+    word-spacing: 15px;
+}
+
+.middle-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #eee;
+    margin-right: auto;
+}
+
+.search-bar {
+    display: flex;
+    border: 1px solid #555;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 400px;
+    background-color: #5a5a5a;
+    margin-right: auto;
+}
+
+.search-bar input {
+    border: none;
+    padding: 8px 12px;
+    flex-grow: 1;
+    background-color: transparent;
+    color: #fff;
+}
+
+.search-bar input::placeholder {
+    color: #bbb;
+}
+
+.search-bar button {
+    background-color: #6a6a6a;
+    border: none;
+    padding: 8px 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.search-bar button:hover {
+    background-color: #7a7a7a;
+}
+
+/* Навігація */
+.main-nav {
+    background-color: #2e2e2e;
+    padding: 8px 0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.main-nav .nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-nav .nav-links li a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 15px;
+}
+
+.main-nav .nav-links li a:hover,
+.main-nav .nav-links li a.active {
+    background-color: #383838;
+    color: #a4dd4a;
+}
+
+/* Навігація "Хлібні крихти" (як на image_560812.png) */
+.breadcrumbs {
+    font-size: 13px;
+    color: #bbb;
+    margin: 10px 0;
+    padding-left: 20px; /* Вирівнювання з контейнером */
+}
+.breadcrumbs span {
+    margin-right: 5px;
+}
+.breadcrumbs span:not(:last-child)::after {
+    content: '/';
+    margin-left: 5px;
+}
+
+/* Заголовок сторінки (як на image_560812.png) */
+.page-title {
+    text-align: center;
+    color: #F0F0F0;
+    font-size: 30px;
+    margin: 20px 0 30px;
+}
+
+/* Панель фільтрів та сортування (як на image_560812.png) */
+.filter-sort-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2b2b2b; /* Той самий фон, що й body */
+    border: 1px solid #4a4a4a; /* Рамка */
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: #F0F0F0;
+    font-size: 14px;
+}
+
+.filters, .sorting-display {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-item, .sort-item, .display-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid transparent; /* Для візуального ефекту при ховері */
+    border-radius: 3px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.filter-item:hover, .sort-item:hover, .display-item:hover {
+    background-color: #383838;
+    border-color: #5a5a5a;
+}
+
+.filter-item i, .sort-item i, .display-item i {
+    margin-left: 8px;
+    color: #bbb;
+}
+
+.display-item .fa-th-large, .display-item .fa-list {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+/* Активна іконка відображення, якщо потрібно */
+/* .display-item .fa-th-large.active { color: #a4dd4a; } */
+
+
+/* Product Grid Section */
+.products-catalog-section {
+    background-color: #2b2b2b; /* Той самий фон, що й body */
+    padding: 20px 0; /* Прибираємо внутрішні відступи, якщо вони не потрібні */
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 колонок */
+    gap: 20px; /* Відступ між елементами */
+    padding: 0 20px; /* Відступи від країв контейнера */
+}
+
+.product-card {
+    background-color: #383838; /* Темний фон картки, як на image_243805.png */
+    border: 1px solid #4a4a4a; /* Рамка, як на image_243805.png */
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* Для позиціонування бейджів */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Бейджі "ХІТ" та "НОВИНКА" (як на image_560812.png) */
+.badges {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: flex;
+    flex-direction: column; /* Бейджі один під одним */
+    gap: 3px;
+    z-index: 10;
+}
+
+.badge {
+    background-color: #a4dd4a; /* Зелений фон */
+    color: #333; /* Темний текст */
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    display: inline-flex; /* Для іконок всередині */
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.badge.hit {
+    background-color: #a4dd4a; /* Зелений для ХІТ */
+    color: #333;
+}
+
+.badge.new {
+    background-color: #844c8b; /* Фіолетовий для НОВИНКА */
+    color: #eee;
+}
+
+.badge.stock-icon {
+    background-color: #6a6a6a; /* Темніший сірий для іконки кількості */
+    color: #eee;
+}
+.badge.stock-icon i {
+    margin-right: 3px;
+}
+
+.badge.stars-icon {
+    background-color: #6a6a6a; /* Темніший сірий для іконки зірок */
+    color: #f7e04a; /* Жовтий для зірок */
+}
+.badge.stars-icon i {
+    font-size: 9px;
+    margin-right: 1px;
+}
+
+
+.product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    background-color: #2b2b2b; /* Фон зображення, як на image_243805.png (майже чорний) */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    filter: brightness(1.1); /* Трохи освітлити */
+}
+
+.product-title {
+    font-size: 16px;
+    color: #F0F0F0;
+    min-height: 40px; /* Забезпечення однакової висоти для назви */
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Обмеження до 2 рядків */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #a4dd4a; /* Зелений акцент для ціни */
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+/* Footer (як було) */
+.footer-bottom {
+    text-align: center;
+    padding: 15px;
+    background-color: #2e2e2e;
+    color: #bbb;
+    margin-top: 40px;
+    font-size: 13px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+
+/* Адаптивність */
+@media (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .filter-sort-panel {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .filters, .sorting-display {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .top-bar, .middle-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .search-bar {
+        width: 100%;
+        margin-right: 0;
+    }
+    .logo {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-nav .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .filter-sort-panel {
+        padding: 10px;
+    }
+    .filters, .sorting-display {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
