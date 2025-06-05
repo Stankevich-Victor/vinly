@@ -316,43 +316,45 @@
 
 @media (max-width: 480px) {
     .product-page {
-        padding: 8px;
-        margin: 5px auto;
+        padding: 10px;
+        margin: 0 auto;
+        box-shadow: none;
+        border-radius: 0;
     }
 
     .product-name-mobile h1 {
-        font-size: 1.3rem;
-        line-height: 1.3;
+        font-size: 1.2rem;
+        line-height: 1.2;
     }
 
     .product-name-mobile .price {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .product-details {
-        gap: 15px;
+        gap: 12px;
         flex-direction: column;
         align-items: stretch;
     }
 
     .main-image {
         max-width: 100%;
-        border-radius: 4px;
-        margin-bottom: 10px;
+        border-radius: 6px;
+        margin-bottom: 8px;
     }
 
     .secondary-images {
-        gap: 4px;
+        gap: 6px;
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding-bottom: 5px;
+        padding-bottom: 6px;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
     }
 
     .secondary-images img {
-        width: 55px;
-        height: 55px;
+        width: 50px;
+        height: 50px;
         flex-shrink: 0;
         scroll-snap-align: start;
     }
@@ -360,26 +362,16 @@
     .product-buy-info,
     .specifications,
     .description {
-        padding: 12px;
+        padding: 10px;
         border-radius: 6px;
+        box-shadow: none;
     }
 
     .buy-now-button,
     .add-to-cart {
         padding: 10px;
-        font-size: 1rem;
+        font-size: 0.95rem;
         margin-bottom: 10px;
-    }
-
-    .specifications h2,
-    .description h2 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-    }
-
-    .specifications ul li,
-    .description p {
-        font-size: 0.9rem;
     }
 
     .desktop-title,
@@ -389,11 +381,28 @@
 
     .quantity-selector {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .quantity-selector label {
+        font-size: 0.9rem;
     }
 
     .quantity-selector input[type="number"] {
         width: 100%;
+        padding: 6px;
+        font-size: 0.95rem;
+    }
+
+    .specifications h2,
+    .description h2 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .specifications ul li,
+    .description p {
+        font-size: 0.85rem;
     }
 }
