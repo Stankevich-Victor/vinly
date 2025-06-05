@@ -1,327 +1,440 @@
-/* ЗАДНІЙ ФОН ВСЬОГО САЙТУ */
+/* ========================================================= */
+/* ГЛОБАЛЬНІ СТИЛІ ТА СКИДАННЯ                               */
+/* ========================================================= */
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #353535;
     color: #c5c5c5;
-    /* УВАГА: padding-top для body тепер не потрібен, тому що хедер не фіксований за замовчуванням */
-    padding-top: 0; /* або залиште 0, якщо не потрібен */
+    padding-top: 0;
     box-sizing: border-box;
+    min-height: 100vh; /* Забезпечує, що body займає всю висоту вікна */
+    display: flex;
+    flex-direction: column;
 }
 
-/* ОСНОВНИЙ ХЕДЕР (ПРОКРУЧУЄТЬСЯ ЗІ СТОРІНКОЮ) */
-.main-header {
-    background: rgba(20, 20, 20, 0.8);
-    color: rgb(43, 43, 43);
+/* Глобальні стилі для посилань (будуть перекриті більш специфічними) */
+a {
+    text-decoration: none;
+    color: inherit; /* Успадковує колір від батьківського елемента */
+    outline: none; /* Додано: Прибираємо outline з усіх посилань */
+}
+
+/* ========================================================= */
+/* ОСНОВНИЙ ХЕДЕР САЙТУ (top-bar)                            */
+/* ========================================================= */
+.top-bar { /* Ваш header - раніше main-header в CSS, тепер top-bar в HTML */
+    background: rgba(20, 20, 20, 0.95); /* Збільшена непрозорість */
     width: 100%;
     z-index: 1000;
     backdrop-filter: blur(5px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    /* Видалено position: fixed; */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Темніша тінь */
 }
 
-/* Стилі для top-links, logo-bar, search, cart-icon залишаються як були */
+/* Верхні посилання в хедері (Каталог, Оплата, Контакти, Про нас) */
 .top-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    font-size: 0.9rem;
+    background-color: #1a1a1a;
     padding: 8px 10px;
+    display: flex;
+    justify-content: flex-start; /* Вирівнювання по лівому краю */
+    gap: 25px; /* Збільшена відстань між посиланнями */
     flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Легка лінія розділення */
+    padding-left: 2rem; /* Відступ зліва */
 }
+
 .top-links a {
-    color: white;
+    color: #e0e0e0;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 5px 0px;
+    font-size: 0.95rem;
+    position: relative; /* Для підкреслення при наведенні */
 }
+
+.top-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: #aaffaa;
+    transition: width 0.3s ease-out;
+}
+
 .top-links a:hover {
     color: #aaffaa;
 }
 
+.top-links a:hover::after {
+    width: 100%;
+}
+
+/* Секція з логотипом, пошуком та кошиком (logo-bar) */
 .logo-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 2rem;
+    padding: 15px 2rem; /* Збільшений вертикальний паддінг */
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px; /* Збільшений проміжок між елементами */
+    position: relative;
 }
+
 .logo {
-    font-size: 2.2rem;
+    font-size: 2.8rem; /* Збільшений розмір лого */
     font-weight: bold;
     color: white;
-    text-decoration: none;
     flex-shrink: 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Легкий тінь */
 }
+
 .search {
     flex-grow: 1;
-    max-width: 500px;
-    padding: 8px 15px;
-    font-size: 1rem;
-    border: 1px solid #555;
-    border-radius: 25px;
-    background-color: #333;
+    max-width: 550px; /* Збільшена максимальна ширина */
+    border: 1px solid #444;
+    border-radius: 28px; /* Більш округлі кути */
+    padding: 10px 20px; /* Збільшений паддінг */
+    font-size: 1.05rem;
+    background-color: #2b2b2b; /* Темніший фон */
     color: #eee;
+    outline: none;
     transition: all 0.3s ease;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3); /* Внутрішня тінь */
+}
+.search::placeholder {
+    color: #999;
 }
 .search:focus {
     border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); /* Більша тінь при фокусі */
+    background-color: #333;
 }
-.search::placeholder {
-    color: #aaa;
-}
+
+/* Стиль для кнопки корзини */
 .cart-icon {
-    font-size: 2rem;
+    font-size: 2.4rem; /* Збільшений розмір іконки */
     cursor: pointer;
     background: none;
     border: none;
-    color: white;
+    color: #fff; /* Білий колір іконки */
     padding: 5px;
     transition: transform 0.2s ease, color 0.2s ease;
     flex-shrink: 0;
+    outline: none; /* Додано: Прибираємо outline */
 }
 .cart-icon:hover {
-    transform: scale(1.1);
-    color: #aaffaa;
+    transform: scale(1.15); /* Більше збільшення */
+    color: #aaffaa; /* Яскравіший зелений */
 }
 
 
-/* БЛОК КАТЕГОРІЙ (БУДЕ "ЛИПКИМ" - STICKY) */
-.categories-bar {
-    /* UВАГА: Використовуємо sticky, а не fixed */
+/* ========================================================= */
+/* БЛОК КАТЕГОРІЙ (ЛИПКІ) (categories-bar)                   */
+/* ========================================================= */
+.categories-bar { /* Ваш nav categories-bar */
     position: sticky;
-    top: 0; /* Прилипне до верху екрана, коли досягне цієї позиції */
+    top: 0; /* Прилипає до верху */
+    background: rgba(30, 30, 30, 0.98); /* Трохи темніший фон */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Темніша тінь */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Більш помітна лінія */
+    padding: 12px 0;
     width: 100%;
-    z-index: 999; /* Трохи менше, ніж z-index main-header, але це не критично, бо main-header прокрутиться */
-    background: rgba(60, 60, 60, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(3px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    /* Transition тут не потрібен для transform/top, оскільки position: sticky керує цим автоматично */
+    z-index: 998; /* Менше, ніж основний хедер */
 }
 
-/* Стилі для самих категорій залишаються без змін */
-.categories {
+.product-category-list { /* Ваш ul product-category-list */
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    padding: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+    gap: 30px; /* Збільшений проміжок */
+    flex-wrap: wrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    -ms-overflow-style: none;
+    -ms-overflow-style: none; /* Для IE/Edge */
 }
 
-.categories::-webkit-scrollbar {
+.product-category-list::-webkit-scrollbar {
     display: none;
 }
 
-.categories button {
+.product-category-list li {
     flex-shrink: 0;
-    padding: 10px 18px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-weight: bold;
-    color: white;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.category-item-link { /* Ваш a category-item-link */
+    display: block;
+    padding: 10px 22px; /* Збільшений паддінг */
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     white-space: nowrap;
+    border: 1px solid transparent;
+    outline: none; /* Додано: Прибираємо outline */
 }
 
-.categories button:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
-    transform: translateY(-2px);
+.category-item-link:hover {
+    background-color: rgba(0, 123, 255, 0.25); /* Трохи темніший ховер */
+    color: #ffffff;
+    transform: translateY(-4px); /* Більше зміщення */
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.35); /* Більша тінь */
+    border-color: rgba(0, 123, 255, 0.6);
 }
 
-.categories .red {
-    background: #dc3545;
+.category-item-link.category-highlight { /* Ваш a category-highlight */
+    background: linear-gradient(45deg, #dc3545, #ff4c4c); /* Трохи змінений градієнт */
     color: white;
-    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 5px 12px rgba(220, 53, 69, 0.5); /* Більша тінь */
+    border: 1px solid #dc3545;
+    transform: scale(1.08); /* Більше збільшення */
+    outline: none; /* Додано: Прибираємо outline */
 }
 
-.categories .red:hover {
-    background: #c82333;
+.category-item-link.category-highlight:hover {
+    background: linear-gradient(45deg, #c82333, #e64242);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.7);
 }
 
 
-/* Стилі, що застосовуються при скролі (тепер вони НЕ потрібні, бо sticky робить це за нас) */
-/* .main-header.scrolled,
-.categories-bar.scrolled,
-body.scrolled-active {} */
-/* Ці класи та відповідний JS-код тепер не потрібні для цього ефекту! */
-
-
-/* Головний контент */
+/* ========================================================= */
+/* ГОЛОВНИЙ КОНТЕНТ (main)                                   */
+/* ========================================================= */
 main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
+    flex-grow: 1;
+    padding: 25px; /* Збільшений паддінг */
+    max-width: 1280px; /* Збільшена максимальна ширина */
+    margin: 25px auto; /* Збільшений відступ */
 }
 
+/* Hero Banner */
 .hero-banner {
-    background: linear-gradient(135deg, #333, #555);
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-    margin-bottom: 40px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
     color: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    padding: 60px 40px; /* Збільшений паддінг */
+    text-align: center;
+    border-radius: 15px; /* Більш округлі кути */
+    margin-bottom: 50px; /* Збільшений нижній відступ */
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4); /* Більша тінь */
+    position: relative;
+    overflow: hidden;
+    /* Анімація легкого руху фону */
+    animation: pulseBackground 10s infinite alternate ease-in-out;
+}
+@keyframes pulseBackground {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+    z-index: 0;
+    pointer-events: none; /* Запобігає блокуванню кліків */
+}
+.hero-banner * {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-banner h1 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-size: 3.5rem; /* Збільшений розмір заголовка */
+    margin-bottom: 18px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
 }
 
 .hero-banner p {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-    line-height: 1.6;
+    font-size: 1.3rem; /* Збільшений розмір тексту */
+    margin-bottom: 35px;
+    opacity: 0.95;
 }
 
 .hero-banner button {
-    padding: 12px 30px;
-    background-color: #007bff;
-    color: white;
+    background-color: #ffc107;
+    color: #333;
     border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 1.1rem;
+    padding: 14px 35px; /* Збільшений паддінг */
+    font-size: 1.2rem; /* Збільшений шрифт */
     font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 30px; /* Більш округлі кути */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    outline: none; /* Додано: Прибираємо outline */
 }
 
 .hero-banner button:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
+    background-color: #e0a800;
+    transform: translateY(-3px) scale(1.02); /* Більше збільшення та зміщення */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 }
+
 
 /* Секції товарів */
 .product-section {
-    margin-bottom: 50px;
+    margin-bottom: 60px; /* Збільшений нижній відступ */
 }
 
 .product-section h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem; /* Збільшений розмір заголовка */
     color: #eee;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     position: relative;
+    letter-spacing: 1px;
 }
 
 .product-section h2::after {
     content: '';
     display: block;
-    width: 80px;
-    height: 3px;
+    width: 90px; /* Збільшена ширина */
+    height: 4px; /* Збільшена висота */
     background-color: #aaffaa;
-    margin: 10px auto 0;
+    margin: 12px auto 0;
     border-radius: 2px;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px; /* Збільшений проміжок */
     justify-content: center;
-    padding: 15px;
+    padding: 20px; /* Збільшений паддінг */
     background-color: #2a2a2a;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    border-radius: 12px; /* Більш округлі кути */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5); /* Темніша тінь */
 }
 
 .product-card {
     background-color: #333;
-    border: 1px solid #555;
+    border: none; /* Рамка картки прибрана */
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4); /* Темніша тінь */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     color: #eee;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     text-decoration: none;
+    position: relative;
+    overflow: hidden; /* Обрізає все, що виходить за межі картки */
+    outline: none; /* Додано: Прибираємо outline */
 }
 
 .product-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    transform: translateY(-8px); /* Більше зміщення */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6); /* Більша тінь */
     background-color: #3d3d3d;
+    border-color: #007bff; /* Цей рядок впливає на рамку при НАВЕДЕННІ */
 }
 
 .product-card img {
-    max-width: 90%;
-    height: 180px;
+    max-width: 95%; /* Збільшена ширина зображення */
+    height: 190px; /* Збільшена висота */
     object-fit: contain;
-    border-radius: 6px;
+    border-radius: 8px; /* Більш округлі кути */
     margin-bottom: 15px;
     background-color: #444;
-    padding: 5px;
+    padding: 8px; /* Збільшений паддінг */
+    border: none; /* Прибрана рамка навколо зображення */
+    outline: none; /* Додано: Прибираємо outline */
+}
+
+.product-card .content-wrapper { /* Додано для мобільної адаптації */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%; /* Додано, щоб wrapper займав всю доступну ширину */
 }
 
 .product-card h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem; /* Збільшений шрифт */
     margin: 10px 0 8px;
     color: white;
     line-height: 1.4;
-    min-height: 50px;
+    min-height: 55px; /* Збільшений мінімальна висота для заголовка */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 0 5px; /* Невеликий горизонтальний паддінг */
 }
 
-.product-card p {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #aaffaa;
+.product-card .price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: auto;
+    width: 100%;
 }
 
 .product-card .old-price {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: #888;
     text-decoration: line-through;
-    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.product-card p { /* Стиль для ціни */
+    font-size: 1.5rem; /* Збільшений шрифт */
+    font-weight: bold;
+    color: #aaffaa;
+    margin: 0;
 }
 
 .product-card .discount-badge {
     background-color: #dc3545;
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9em;
+    padding: 6px 12px; /* Збільшений паддінг */
+    border-radius: 6px;
+    font-size: 0.95em; /* Збільшений шрифт */
     font-weight: bold;
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 12px; /* Зміщена позиція */
+    left: 12px; /* Зміщена позиція */
     z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 
-/* ФУТЕР (НИЖНІЙ КОЛОНТИТУЛ) */
+/* ========================================================= */
+/* ФУТЕР (НИЖНІЙ КОЛОНТИТУЛ)                                 */
+/* ========================================================= */
 .main-footer {
-    background-color: #222;
+    background-color: #1c1c1c; /* Темніший фон футера */
     color: #c5c5c5;
-    padding: 40px 20px;
-    margin-top: 50px;
-    border-top: 1px solid #333;
+    padding: 50px 20px; /* Збільшений паддінг */
+    margin-top: 60px; /* Збільшений верхній відступ */
+    border-top: 1px solid #3d3d3d; /* Більш помітна лінія */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.4); /* Тінь вгору */
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Більший minwidth */
+    gap: 40px; /* Збільшений проміжок */
+    max-width: 1280px; /* Відповідає main */
     margin: 0 auto;
 }
 
@@ -331,10 +444,10 @@ main {
 
 .footer-column h3 {
     color: #eee;
-    font-size: 1.4rem;
-    margin-bottom: 18px;
-    border-bottom: 2px solid #444;
-    padding-bottom: 8px;
+    font-size: 1.5rem; /* Збільшений шрифт */
+    margin-bottom: 20px; /* Збільшений відступ */
+    border-bottom: 2px solid #555; /* Більш помітна лінія */
+    padding-bottom: 10px; /* Збільшений паддінг */
 }
 
 .footer-column p {
@@ -349,23 +462,26 @@ main {
 }
 
 .footer-column ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Збільшений відступ */
 }
 
 .footer-column ul li a {
     color: #a0a0a0;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 1.05rem; /* Збільшений шрифт */
+    outline: none; /* Додано: Прибираємо outline */
 }
 
 .footer-column ul li a:hover {
     color: #fff;
+    text-decoration: underline; /* Підкреслення при наведенні */
 }
 
 .social-links {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px; /* Збільшений проміжок */
 }
 
 .social-links a {
@@ -373,106 +489,155 @@ main {
     align-items: center;
     color: #a0a0a0;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.1rem; /* Збільшений шрифт */
     transition: color 0.3s ease;
+    outline: none; /* Додано: Прибираємо outline */
 }
 
 .social-links a:hover {
     color: #fff;
 }
 
-.social-icon {
-    width: 28px;
-    height: 28px;
-    margin-right: 12px;
-    filter: grayscale(100%) brightness(150%);
-    transition: filter 0.3s ease;
+/* Стилі Font Awesome іконок соц.мереж */
+.social-links .social-icon {
+    font-size: 28px; /* Розмір іконки */
+    margin-right: 15px; /* Відступ від тексту */
+    color: #a0a0a0; /* Колір за замовчуванням */
+    transition: color 0.3s ease;
 }
 
 .social-links a:hover .social-icon {
-    filter: grayscale(0%) brightness(100%);
+    color: #fff; /* Колір при наведенні */
 }
+/* Перевизначення для конкретних іконок, якщо потрібно */
+.social-links a:hover .fa-telegram {
+    color: #0088cc; /* Telegram blue */
+}
+.social-links a:hover .fa-tiktok {
+    color: #000; /* TikTok black */
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 2px;
+}
+
 
 .footer-bottom {
     text-align: center;
-    margin-top: 40px;
-    padding-top: 25px;
-    border-top: 1px solid #333;
-    font-size: 0.9rem;
+    margin-top: 50px; /* Збільшений верхній відступ */
+    padding-top: 30px; /* Збільшений паддінг */
+    border-top: 1px solid #3d3d3d;
+    font-size: 0.95rem;
     color: #888;
 }
 
 
-/* Адаптивність */
+/* ========================================================= */
+/* АДАПТИВНІСТЬ                                              */
+/* ========================================================= */
 
-/* Медіа-запити для планшетів (768px - 1024px) */
+/* Медіа-запити для планшетів (max-width: 1024px) */
 @media (max-width: 1024px) {
-    body {
-        padding-top: 0; /* Знову ж, не потрібен, бо не fixed */
+    .top-links {
+        padding-left: 1rem;
+        gap: 15px;
     }
-    .main-header {
-        padding: 8px 1.5rem;
+    .logo-bar {
+        padding: 12px 1.5rem;
+        gap: 15px;
+    }
+    .logo {
+        font-size: 2.5rem;
     }
     .search {
-        max-width: 400px;
-    }
-    .categories {
-        gap: 0.8rem;
-        padding: 8px;
-    }
-    .categories button {
-        padding: 9px 15px;
-        font-size: 0.95rem;
-    }
-    main {
-        padding: 15px;
-        margin: 15px auto;
-    }
-    .hero-banner {
-        padding: 30px;
-    }
-    .hero-banner h1 {
-        font-size: 2.2rem;
-    }
-    .hero-banner p {
-        font-size: 1.1rem;
-    }
-    .hero-banner button {
-        padding: 10px 25px;
+        max-width: 450px;
+        padding: 9px 18px;
         font-size: 1rem;
     }
+    .cart-icon {
+        font-size: 2.2rem;
+    }
+
+    .categories-bar {
+        padding: 10px 0;
+    }
+    .product-category-list {
+        gap: 20px;
+        padding: 0 15px;
+    }
+    .category-item-link {
+        padding: 9px 18px;
+        font-size: 1.05rem;
+    }
+
+    main {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    .hero-banner {
+        padding: 40px 30px;
+        margin-bottom: 40px;
+    }
+    .hero-banner h1 {
+        font-size: 2.8rem;
+    }
+    .hero-banner p {
+        font-size: 1.2rem;
+    }
+    .hero-banner button {
+        padding: 11px 28px;
+        font-size: 1.05rem;
+    }
     .product-section h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        margin-bottom: 25px;
     }
     .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        padding: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 15px;
     }
     .product-card {
         padding: 15px;
     }
     .product-card img {
-        height: 160px;
+        height: 170px;
     }
     .product-card h3 {
-        font-size: 1.1rem;
-        min-height: 45px;
+        font-size: 1.2rem;
+        min-height: 50px;
     }
     .product-card p {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     .footer-content {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 25px;
+        gap: 30px;
+    }
+    .footer-column h3 {
+        font-size: 1.3rem;
+    }
+    .footer-column ul li a,
+    .social-links a {
+        font-size: 1rem;
+    }
+    /* Font Awesome іконки */
+    .social-links .social-icon {
+        font-size: 24px;
     }
 }
 
-/* Медіа-запити для телефонів (менше 768px) */
+/* Медіа-запити для телефонів (max-width: 768px) */
 @media (max-width: 768px) {
-    body {
-        padding-top: 0; /* Не потрібен */
+    .top-links {
+        justify-content: center; /* Центрування посилань на мобільних */
+        padding: 8px 10px;
+        gap: 10px;
+        font-size: 0.85rem;
     }
+    .top-links a {
+        padding: 3px 5px;
+    }
+
     .logo-bar {
         flex-direction: column;
         align-items: center;
@@ -480,60 +645,79 @@ main {
         gap: 10px;
     }
     .cart-icon {
-        font-size: 1.8rem;
+        font-size: 2rem;
         position: absolute;
-        top: 10px;
-        right: 15px;
+        top: 15px; /* Зміщена позиція */
+        right: 20px; /* Зміщена позиція */
     }
-    .categories {
+    .logo {
+        font-size: 2.2rem;
+        margin-bottom: 5px;
+    }
+    .search {
+        width: 90%; /* Поле пошуку на більшу ширину */
+        max-width: 90%; /* Обмеження ширини */
+        padding: 8px 15px;
+        font-size: 0.95rem;
+    }
+
+    .categories-bar {
+        padding: 8px 0;
+    }
+    .product-category-list {
         justify-content: flex-start;
-        padding: 8px 10px;
+        padding: 0 10px;
+        gap: 12px;
     }
-    .categories button {
-        padding: 8px 12px;
-        font-size: 0.9rem;
+    .category-item-link {
+        padding: 8px 15px;
+        font-size: 0.95rem;
     }
+
     main {
         padding: 10px;
         margin: 10px auto;
     }
     .hero-banner {
-        padding: 25px;
+        padding: 30px 20px;
         margin-bottom: 30px;
-        border-radius: 8px;
     }
     .hero-banner h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     .hero-banner p {
         font-size: 1rem;
+        margin-bottom: 25px;
     }
     .hero-banner button {
         padding: 10px 20px;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
     .product-section h2 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
         margin-bottom: 20px;
     }
     .product-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         padding: 10px;
     }
     .product-card {
-        padding: 15px;
-        flex-direction: row;
-        text-align: left;
-        gap: 15px;
-        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px; /* Reduced gap for column layout */
+        align-items: center; /* Center items for column layout */
+        flex-grow: 1;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     .product-card img {
-        width: 100px;
-        height: 100px;
+        width: 110px; /* Keep consistent size for 2-column */
+        height: 110px;
         max-width: none;
-        margin-bottom: 0;
+        margin-bottom: 10px; /* Add margin below image */
         flex-shrink: 0;
+        padding: 5px;
     }
     .product-card .content-wrapper {
         display: flex;
@@ -542,29 +726,31 @@ main {
         flex-grow: 1;
     }
     .product-card h3 {
-        font-size: 1rem;
+        font-size: 1.05rem;
         margin: 0;
         min-height: auto;
         -webkit-line-clamp: 3;
-    }
-    .product-card p {
-        font-size: 1.1rem;
-        margin-top: 5px;
-        text-align: right;
-        width: auto;
-        flex-shrink: 0;
+        padding: 0;
     }
     .product-card .price-wrapper {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
-        margin-left: auto;
+        align-items: center; /* Center prices */
+        margin-top: 5px; /* Small margin */
+        margin-left: 0; /* Remove auto margin from row layout */
+    }
+    .product-card p {
+        font-size: 1.2rem;
+        margin-top: 5px;
+        text-align: center; /* Center price text */
+        width: auto;
+        flex-shrink: 0;
     }
     .product-card .discount-badge {
         font-size: 0.8em;
         padding: 3px 8px;
-        top: 5px;
-        left: 5px;
+        top: 8px;
+        left: 8px;
     }
     .footer-content {
         grid-template-columns: 1fr;
@@ -584,66 +770,89 @@ main {
     .social-links a {
         justify-content: center;
     }
+    /* Font Awesome іконки */
+    .social-links .social-icon {
+        font-size: 20px;
+    }
     .footer-bottom {
         margin-top: 20px;
         padding-top: 15px;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
 }
 
 /* Для дуже маленьких екранів (наприклад, iPhone SE) */
-@media (max-width: 400px) {
-    body {
-        padding-top: 0;
-    }
+@media (max-width: 480px) { /* Змінив з 400px на 480px для більшої сумісності */
     .logo-bar {
-        padding: 8px 0.5rem;
-    }
-    .search {
-        width: 95%;
+        padding: 8px 0.8rem;
     }
     .cart-icon {
-        top: 8px;
-        right: 10px;
-        font-size: 1.6rem;
+        top: 12px;
+        right: 15px;
+        font-size: 1.8rem;
     }
-    .categories button {
-        padding: 6px 10px;
-        font-size: 0.8rem;
+    .logo {
+        font-size: 2rem;
     }
-    .product-card {
-        padding: 10px;
+    .search {
+        padding: 7px 12px;
+        font-size: 0.9rem;
+    }
+    .product-category-list {
         gap: 10px;
     }
+    .category-item-link {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .hero-banner {
+        padding: 25px 15px;
+    }
+    .hero-banner h1 {
+        font-size: 1.6rem;
+    }
+    .hero-banner p {
+        font-size: 0.9rem;
+    }
+    .hero-banner button {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+    .product-section h2 {
+        font-size: 1.6rem;
+    }
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+    .product-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        align-items: center;
+    }
     .product-card img {
-        width: 80px;
-        height: 80px;
+        width: 140px; /* Increased to look better in single column */
+        height: 140px;
+        margin-bottom: 10px;
     }
     .product-card h3 {
-        font-size: 0.9rem;
-        -webkit-line-clamp: 3;
+        font-size: 1rem;
+        min-height: auto;
+    }
+    .product-card .price-wrapper {
+        align-items: center;
     }
     .product-card p {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
-}
-
-/* Клас для прихованих елементів на мобільних, якщо ви захочете їх приховувати */
-.hide-on-mobile {
-    display: block;
-}
-@media (max-width: 768px) {
-    .hide-on-mobile {
-        display: none;
+    .footer-column h3 {
+        font-size: 1.1rem;
     }
-}
-
-/* Клас для прихованих елементів на десктопі, якщо ви захочете їх приховувати */
-.hide-on-desktop {
-    display: none;
-}
-@media (max-width: 768px) {
-    .hide-on-desktop {
-        display: block;
+    .footer-column ul li a,
+    .social-links a {
+        font-size: 0.9rem;
     }
 }
