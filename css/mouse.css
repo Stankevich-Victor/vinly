@@ -15,58 +15,73 @@ body {
 
 /* Header */
 .header-main {
-    background-color: #4a4a4a;
+    background-color: #000000; /* Ввесь хедер тепер буде чорним */
     color: #fff;
-    padding: 10px 0;
+    padding: 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
+/* Верхня панель (Каталог, Оплата...) */
 .top-bar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #333333; /* Невелика розділююча лінія */
+}
+
+.top-bar-content { /* Контейнер для вмісту верхнього бара */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    display: flex;
+    justify-content: flex-end; /* Вирівнювання по правому краю */
+    align-items: center;
     font-size: 13px;
     color: #bbb;
+    flex-wrap: wrap; /* Для адаптивності */
+    gap: 15px; /* Проміжок між посиланнями */
 }
 
-.top-bar p {
+.top-bar-content p {
     margin: 0;
-    word-spacing: 15px;
 }
 
+.top-bar-content a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.top-bar-content a:hover {
+    color: #a4dd4a;
+}
+
+
+/* Середня панель (Лого, Пошук, Кошик) */
 .middle-bar {
+    padding: 10px 0; /* Паддінг для цієї секції */
+    border-bottom: 1px solid #333333; /* Невелика розділююча лінія */
+}
+
+.middle-bar-content { /* Контейнер для вмісту середнього бара */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 10px auto;
-    padding: 0 20px;
+    flex-wrap: wrap; /* Для адаптивності */
+    gap: 20px;
 }
 
 .logo {
     font-size: 30px;
     font-weight: bold;
     color: #eee;
-    margin-right: auto;
     text-decoration: none;
+    flex-shrink: 0; /* Щоб не зменшувався */
 }
 
 .logo:hover {
     color: #a4dd4a;
-}
-
-/* Стилізація як кнопки */
-.logo-button {
-    background: none;
-    border: none;
-    font: inherit;
-    cursor: pointer;
-    padding: 0;
-    color: inherit;
-    text-decoration: none;
 }
 
 /* Пошук */
@@ -75,10 +90,10 @@ body {
     border: 1px solid #555;
     border-radius: 5px;
     overflow: hidden;
-    width: 400px;
-    background-color: #5a5a5a;
-    margin: 0 20px;
-    flex-shrink: 1;
+    flex-grow: 1; /* Дозволяє займати доступний простір */
+    max-width: 400px; /* Максимальна ширина для пошуку */
+    background-color: #333333;
+    margin: 0; /* Прибираємо зовнішні відступи */
 }
 
 .search-bar input {
@@ -94,7 +109,7 @@ body {
 }
 
 .search-bar button {
-    background-color: #6a6a6a;
+    background-color: #444444;
     border: none;
     padding: 8px 12px;
     color: #fff;
@@ -103,20 +118,24 @@ body {
 }
 
 .search-bar button:hover {
-    background-color: #7a7a7a;
+    background-color: #555555;
 }
 
 /* Кошик */
 .cart-icon {
     font-size: 20px;
     color: #fff;
-    margin-left: auto;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    flex-shrink: 0; /* Щоб не зменшувався */
 }
 
-/* Навігація */
+
+/* Навігація (Миши, Клавіатури...) */
 .main-nav {
-    background-color: #2e2e2e;
+    background-color: #000000; /* Вона вже була чорною, залишаємо */
     padding: 8px 0;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
@@ -127,7 +146,7 @@ body {
     list-style: none;
     margin: 0 auto;
     padding: 0;
-    max-width: 1200px;
+    max-width: 1200px; /* Вирівнюємо за допомогою max-width */
 }
 
 .main-nav .nav-links li a {
@@ -136,13 +155,13 @@ body {
     padding: 10px 20px;
     display: block;
     transition: background-color 0.3s, color 0.3s;
-    font-size: 18px; /* ЗБІЛЬШЕНИЙ РОЗМІР */
+    font-size: 18px;
     font-weight: 600;
 }
 
 .main-nav .nav-links li a:hover,
 .main-nav .nav-links li a.active {
-    background-color: #383838;
+    background-color: #1a1a1a;
     color: #a4dd4a;
 }
 
@@ -317,15 +336,100 @@ body {
 }
 
 /* Footer */
+.main-footer {
+    background-color: #000000;
+    color: #c5c5c5;
+    padding: 50px 20px;
+    margin-top: 60px;
+    border-top: 1px solid #3d3d3d;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    padding: 10px;
+}
+
+.footer-column h3 {
+    color: #eee;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #555;
+    padding-bottom: 10px;
+}
+
+.footer-column p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1.05rem;
+    outline: none;
+}
+
+.footer-column ul li a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    color: #a0a0a0;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    outline: none;
+}
+
+.social-links a:hover {
+    color: #fff;
+}
+
+.social-links .social-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
+    object-fit: contain;
+}
+
 .footer-bottom {
     text-align: center;
-    padding: 15px;
-    background-color: #2e2e2e;
-    color: #bbb;
-    margin-top: 40px;
-    font-size: 13px;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #3d3d3d;
+    font-size: 0.95rem;
+    color: #888;
+    background-color: #000000;
 }
+
 
 /* Адаптивність */
 @media (max-width: 1200px) {
@@ -346,23 +450,43 @@ body {
     .filters, .sorting-display {
         flex-wrap: wrap;
     }
+    .top-bar-content, .middle-bar-content { /* Адаптуємо контейнери */
+        padding: 0 15px;
+    }
 }
 
 @media (max-width: 768px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .top-bar, .middle-bar {
+    .top-bar-content {
+        justify-content: center; /* Центруємо посилання на менших екранах */
+        text-align: center;
+    }
+    .middle-bar-content {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        align-items: center; /* Центруємо елементи по вертикалі */
+        gap: 15px;
     }
     .search-bar {
         width: 100%;
-        margin: 0;
+        max-width: 90%; /* Зменшуємо максимальну ширину */
     }
     .logo {
-        margin-right: 0;
+        margin-bottom: 10px; /* Відступ під логотипом */
+    }
+    .cart-icon {
+        margin-top: 5px; /* Відступ над кошиком */
+    }
+    .main-nav .nav-links {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+    .main-nav .nav-links li a {
+        width: 100%; /* Посилання займають всю ширину */
+        text-align: center;
+        padding: 8px 0;
     }
 }
 
@@ -370,15 +494,16 @@ body {
     .product-grid {
         grid-template-columns: 1fr;
     }
-    .main-nav .nav-links {
-        flex-direction: column;
-        align-items: center;
-    }
     .filter-sort-panel {
         padding: 10px;
     }
     .filters, .sorting-display {
         width: 100%;
         justify-content: space-between;
+    }
+    .top-bar-content p {
+        flex-direction: column; /* Кожне посилання на новому рядку */
+        align-items: center;
+        gap: 8px;
     }
 }
